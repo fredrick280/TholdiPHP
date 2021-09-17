@@ -16,8 +16,7 @@ include_once "_head_inc.php";
         </head>
         <body>
         <div class="login-form">
- 
-                
+  
             <form action="inscription_traitement.php" method="post">
                 <h2 class="text-center">Inscription</h2>       
                 <div class="form-group">
@@ -37,7 +36,8 @@ include_once "_head_inc.php";
                 </div>   
             </form>
         </div>
-        <style>
+
+            <style>
             .login-form {
                 width: 340px;
                 margin: 50px auto;

@@ -11,9 +11,6 @@
                            $login = htmlspecialchars($_POST['login']);
                            $mdp = htmlspecialchars($_POST['mdp']);
                    
-                   
-                          // if (isset($_POST["login"]) && isset($_POST["mdp"])) 
-                           //{
                                $pdo = gestionnaireDeConnexion();
                                $sql = "SELECT *, count(*) as nb FROM utilisateur WHERE LOGIN='$login' AND MDP='$mdp' GROUP BY code";
                                 echo $sql ;
@@ -34,9 +31,5 @@
                                    header("location:connexionmauvaise.php");
                                    $prep->closeCursor();
                                }
-                   
-                   
-                          // }
-                   
-                       }
+                                          }
                    ?>
