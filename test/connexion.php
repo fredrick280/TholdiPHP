@@ -32,9 +32,8 @@
                                 <strong>Erreur</strong> compte non existant
                             </div>
                        
-                       
             
-            <form action="connexion_traitement.php" method="post">
+            <form method="post" action="connexion_traitement.php">
                 <h2 class="text-center">Connexion</h2>       
                 <div class="form-group">
                     <input type="login" name="login" class="form-control" placeholder="login" required="required" autocomplete="off">
@@ -48,6 +47,11 @@
             </form>
             <p class="text-center"><a href="inscription.php">Inscription</a></p>
         </div>
+
+        <?php 
+        echo $_POST['login'];
+        echo $_POST['mdp'];  
+         ?>
 
         <style>
             .login-form {
