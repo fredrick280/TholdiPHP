@@ -16,14 +16,6 @@ and open the template in the editor.
         <a href="reservation.php">
             reservation
         </a>
-        <?php
-        
-        $pdo = gestionnaireDeConnexion() ;
-        
-        $collectionVilles = obtenirVille();
-        
-        var_dump($collectionVilles);
-        
-        ?>
+       
     </body>
 </html>

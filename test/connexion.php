@@ -2,35 +2,8 @@
     session_start();
     require_once '_gestionBase_inc.php';
     include_once "_head_inc.php";
-
-    if(!empty($_POST['login']) && !empty($_POST['mdp'])) {
-        $email = htmlspecialchars($_POST['login']);
-        $mdp = htmlspecialchars($_POST['mdp']);
-
-
-        if (isset($_POST["login"]) && isset($_POST["mdp"])) {
-            $pdo = gestionnaireDeConnexion();
-            $sql = "SELECT *, count (*) as nb FROM utilisateur WHERE LOGIN='$email' AND MDP='$mdp' GROUP BY code";
-
-            $prep = $pdo->prepare($sql);
-
-            $prep->execute();
-            $resultat = $prep->fetch();
-
-            if ($resultat["nb"] == 1) {
-                $compteExistant = true;
-                header("location:index.php");
-                $_SESSION = $_SESSION($email);
-            } else {
-                header("location:connexionmauvaise.php");
-                $prep->closeCursor();
-            }
-
-
-        }
-
-    }
 ?>
+
 
 <!DOCTYPE html>
     <html lang="fr">
@@ -46,41 +19,22 @@
         <body>
         
         <div class="login-form">
-             <?php 
-                if(isset($_GET['login_err']))
-                {
-                    $err = htmlspecialchars($_GET['login_err']);
-
-                    switch($err)
-                    {
-                        case 'mdp':
-                        ?>
+             
                             <div class="alert alert-danger">
                                 <strong>Erreur</strong> mot de passe incorrect
                             </div>
-                        <?php
-                        break;
-
-                        case 'login':
-                        ?>
+                        
                             <div class="alert alert-danger">
                                 <strong>Erreur</strong> email incorrect
                             </div>
-                        <?php
-                        break;
-
-                        case 'already':
-                        ?>
+                     
                             <div class="alert alert-danger">
                                 <strong>Erreur</strong> compte non existant
                             </div>
-                        <?php
-                        break;
-                    }
-                }
-                ?> 
+                       
+                       
             
-            <form action="connexion.php" method="post">
+            <form action="connexion_traitement.php" method="post">
                 <h2 class="text-center">Connexion</h2>       
                 <div class="form-group">
                     <input type="login" name="login" class="form-control" placeholder="login" required="required" autocomplete="off">
@@ -94,6 +48,7 @@
             </form>
             <p class="text-center"><a href="inscription.php">Inscription</a></p>
         </div>
+
         <style>
             .login-form {
                 width: 340px;
@@ -121,7 +76,7 @@
             {
                 background-color: #4169E1;
             }
-
+            
         </style>
         </body>
 </html>

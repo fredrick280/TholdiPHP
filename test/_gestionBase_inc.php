@@ -3,7 +3,7 @@
 function gestionnaireDeConnexion() {
     try {
         $pdo = new PDO(
-                'mysql:host=localhost;dbname=tholdi_reservation',
+                'mysql:host=localhost;dbname=tholdi',
                 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
         );
     } catch (PDOException $err) {
@@ -15,7 +15,7 @@ function gestionnaireDeConnexion() {
 
 function obtenirVille() {
     $pdo = gestionnaireDeConnexion();
-    $req = "select * from ville ";
+    $req = "SELECT * FROM ville ";
     $pdoStatement = $pdo->query($req);
     $lesVilles = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
     return $lesVilles;
@@ -23,7 +23,7 @@ function obtenirVille() {
 
 function obtenirTypeContainer() {
     $pdo = gestionnaireDeConnexion();
-    $req = "select * from typeContainer ";
+    $req = "SELECT * FROM typeContainer ";
     $pdoStatement = $pdo->query($req);
     $lesContainers = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
     return $lesContainers;
@@ -35,11 +35,11 @@ function ajouterUneReservation($dateDebutReservation, $dateFinReservation, $volu
     $dateReservation = time();
     $dateDebutReservation = strtotime($dateDebutReservation);
     $dateFinReservation = strtotime($dateFinReservation);
-    $req = "insert into reservation"
+    $req = "INSERT INTO  reservation"
             . " (dateDebutReservation,dateFinReservation,dateReservation,"
             . " volumeEstime,codeVilleMiseDisposition,"
             . " codeVilleRendre,codeUtilisateur,etat)"
-            . " values ($dateDebutReservation,$dateFinReservation,$dateReservation
+            . " VALUES ($dateDebutReservation,$dateFinReservation,$dateReservation
                         ,$volumeEstime,$codeVilleMiseDisposition,$codeVilleRendre,"
             . "$codeUtiliseur,'enCours')";
     $pdo->exec($req);
@@ -49,7 +49,7 @@ function ajouterUneReservation($dateDebutReservation, $dateFinReservation, $volu
 
 function ajouterLigneDeReservation($codeReservation,$numTypeContainer,$quantite){
     $pdo = gestionnaireDeConnexion();
-    $req = "insert into reserver (codeReservation,numTypeContainer,quantite) "
-            . " values ($codeReservation,$numTypeContainer,$quantite)" ;
+    $req = "INSERT INTO reserver (codeReservation,numTypeContainer,quantite) "
+            . " VALUES ($codeReservation,$numTypeContainer,$quantite)" ;
     $pdo->exec($req);
 }
