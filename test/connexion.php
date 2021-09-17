@@ -48,11 +48,6 @@
             <p class="text-center"><a href="inscription.php">Inscription</a></p>
         </div>
 
-        <?php 
-        echo $_POST['login'];
-        echo $_POST['mdp'];  
-         ?>
-
         <style>
             .login-form {
                 width: 340px;
